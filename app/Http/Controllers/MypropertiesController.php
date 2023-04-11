@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\property;
 use Illuminate\Http\Request;
+use App\Models\like;
+
+
 
 class MypropertiesController extends Controller
 {
@@ -13,11 +16,22 @@ class MypropertiesController extends Controller
     public function index()
     {
         
-        $property = property::with('PropertyImage')->where('user_id',auth()->id())->get();
-       
-       
+        $property = property::with('PropertyImage')->where('user_id',auth()->id())->paginate(5);
+
+        
+        $properties = Property::with('PropertyImage')->get();
+
+        // Loop through each property and append the count of likes to it
+        $properties = $properties->map(function($property){
+            $likeCount = like::where('property_id', $property->id)->count();
+            $property->like_count = $likeCount;
+            return $property;
+        });
+
+      
         return view('pages.Myproperties',[
             'properties' => $property,
+           
         ]);
 
     }

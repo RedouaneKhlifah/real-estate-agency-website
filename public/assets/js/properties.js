@@ -20,17 +20,8 @@ items.forEach((item) => {
     item.addEventListener("click", () => {
         item.classList.toggle("checked");
 
-        let checked = document.querySelectorAll(".checked"),
-            btnText = document.querySelector(".btn-text");
-
-        if (checked && checked.length > 0) {
-            btnText.innerText = `${checked.length} Selected`;
-        } else {
-            btnText.innerText = "Select Language";
-        }
-
-        
-        item.querySelector("input[type='checkbox']").click();
+        let input = item.querySelector("input[type='checkbox']");
+        input.checked = !input.checked;
     });
 });
 
@@ -45,3 +36,16 @@ filterButtonArrow.addEventListener("click", () => {
     filterButtonArrow.classList.toggle("active");
     console.log("re");
 });
+
+// NAVBAR
+
+const dropdown_Navbar = document.querySelector(".dropdown_Navbar");
+const navnar_dropdown_options = document.querySelector(
+    ".navnar_dropdown_options"
+);
+
+if (dropdown_Navbar) {
+    dropdown_Navbar.addEventListener("click", (e) => {
+        navnar_dropdown_options.classList.toggle("d-none");
+    });
+}

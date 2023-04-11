@@ -10,6 +10,7 @@ use App\Http\Controllers\propertyController;
 use App\Http\Controllers\MypropertiesController;
 use App\Http\Controllers\favpropertiesController;
 use App\Http\Controllers\adminpropertiesController;
+use App\Http\Controllers\ApiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,3 +51,5 @@ Route::resource('/Myproperties',MypropertiesController::class);
 Route::resource('/Favourites',favpropertiesController::class);
 
 Route::resource('/unvalidprop',adminpropertiesController::class);
+
+Route::get('/moroccan-cities', [ApiController::class, 'getMoroccanCities']);

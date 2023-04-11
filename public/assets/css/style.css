@@ -55,7 +55,7 @@ body {
     cursor: pointer;
     font-size: 13px;
     border-radius: 10px;
-
+    display: flex;
     align-items: center;
 }
 .imageContainerAll {
@@ -98,7 +98,7 @@ body {
 #plusIcon,
 #plusIconWhite {
     width: 22px;
-    margin-right: 5px;
+    margin-right: 4px;
 }
 
 .Register {
@@ -121,12 +121,12 @@ body {
     height: 55px;
     border-radius: 7px;
     margin-top: 8px;
+    padding-left: 20px;
 }
 
 .searchHeaderInput::placeholder {
     font-weight: bold;
     opacity: 0.5;
-    padding-left: 20px;
 }
 
 @media (min-width: 1200px) {
@@ -169,6 +169,26 @@ body {
     width: 50px;
     object-fit: cover;
     margin-right: 10px;
+}
+
+.userName,
+#navArrow {
+    color: #2d3954;
+}
+.optionContainer,
+.navDropIcon,
+.option,
+.userName,
+#navArrow,
+.dropdown_Navbar {
+    transition: color 0.2s ease-in-out; /* Define the transition effect */
+}
+
+.optionContainer:hover .navDropIcon,
+.optionContainer:hover .option,
+.dropdown_Navbar:hover .userName,
+.dropdown_Navbar:hover #navArrow {
+    color: blue; /* Replace with the desired hover color */
 }
 
 /* home body  */
@@ -252,9 +272,17 @@ body {
 }
 
 .boxTitle {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     padding: 0px;
+    cursor: pointer;
+}
+.boxTitleA {
+    color: #2d3954;
+}
+
+.boxTitleA:hover {
+    color: #1266e3;
 }
 
 .propertyType {
@@ -326,8 +354,16 @@ body {
 }
 
 .locationconatiner {
+    gap: 8px;
     font-size: 15px;
     display: flex;
+    align-items: center;
+}
+
+.locationconatiner .fa-solid {
+    font-weight: 900;
+    font-size: 15px;
+    color: #a1abc9;
 }
 
 .BoxButtonConatiner a {
@@ -422,6 +458,24 @@ body {
     transform: scale(1.55);
 }
 
+.carousel-control-prev {
+    left: -33px;
+    transition: left 0.2s ease-in-out;
+}
+
+.carousel-control-next {
+    right: -43px;
+    transition: right 0.2s ease-in-out;
+}
+
+.carousel:hover .carousel-control-prev {
+    left: 0;
+}
+
+.carousel:hover .carousel-control-next {
+    right: 0;
+}
+
 /* properties section  */
 
 .filterContainer {
@@ -462,6 +516,7 @@ body {
 .select-btn.open .arrow-dwn {
     transform: rotate(-180deg);
 }
+
 .list-items {
     position: relative;
     padding: 0px 16px;
@@ -470,9 +525,18 @@ body {
     height: 0;
     overflow: hidden;
 }
-.select-btn.open ~ .list-items {
+.select-btn.open ~ #PROPERTY-TYPES {
+    height: 150px;
+}
+
+.select-btn.open ~ #WHERE {
     height: 287px;
 }
+
+.select-btn.open ~ #FEATURES {
+    height: 450px;
+}
+
 .list-items .item {
     display: flex;
     align-items: center;
@@ -876,7 +940,7 @@ a.link {
     background: rgba(247, 68, 0, 0.1);
     color: #f74400;
     padding: 4px 12px;
-    max-width: 55px;
+    max-width: fit-content;
     border-radius: 50px;
     font-size: 12px;
     font-weight: 600;

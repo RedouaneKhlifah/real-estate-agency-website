@@ -134,11 +134,21 @@
                     <div class="pagination-container">
                         <nav>
                             <ul class="pagination">
-                                <li class="page-item"><a class="btn btn-common" href="#"><i class="lni-chevron-left"></i> Previous </a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="btn btn-common" href="#">Next <i class="lni-chevron-right"></i></a></li>
+                                @if($properties->currentPage() >1)
+                                    <li class="page-item"><a class="btn btn-common" href="{{ $properties->previousPageUrl() }}"><i class="lni-chevron-left"></i> Previous </a></li>
+                                @endif
+
+                                @for ($i = 1; $i <= $properties->lastPage() ;$i++)
+
+                                <li class="page-item" ><a class="page-link"  @if($properties->currentPage()  == $i) style="background: #ff385c; color:white" @endif href="{{ $properties->url($i) }}">{{$i}}</a></li>
+                                    
+                                @endfor
+                              
+                                
+                                @if($properties->currentPage()  < $properties->lastPage())
+                                <li class="page-item"><a class="btn btn-common" href="{{$properties->nextPageUrl()}}">Next <i class="lni-chevron-right"></i></a></li>
+                                @endif
+
                             </ul>
                         </nav>
                     </div>

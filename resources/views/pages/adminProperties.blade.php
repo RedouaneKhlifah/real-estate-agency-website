@@ -90,8 +90,7 @@
                                 <th class="pl-2">My Properties</th>
                                 <th class="p-0"></th>
                                 <th>Date Added</th>
-                                <th>Views</th>
-                                <th>Actions</th>
+                                <th class="text-center">Actions</th>
                             </tr>
                            
 
@@ -120,10 +119,8 @@
                                     </div>
                                 </td>
                                 <td>08.14.2020</td>
-                                <td>163</td>
-                                <td class="actions">
-                                    <a href="#" class="edit"><i class="lni-pencil"></i>Edit</a>
-                                    <a href="#"><i class="far fa-trash-alt"></i></a>
+                                <td class="actions text-center">
+                                    <button class="border-0 bg-danger text-white statusBtn"  style="    width: 100px; height: 30px; border-radius:20px" data-id="{{$property->id}}">unvalide</button>
                                 </td>
                             </tr> 
 
@@ -152,7 +149,7 @@
 </section>
 
 
-
+<script src="{{url('assets/js/admin.js')}}"></script>
 
 
 

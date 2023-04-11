@@ -14,12 +14,15 @@ class propertiesController extends Controller
     public function index()
     {
         $property = Property::with('PropertyImage')->where('status', true)->get();
-
+        $Count = $property->count();
+        $Some =  $property->count();
 
 
 
         return view('pages.properties',[
             'properties' => $property ,
+            'count' => $Count,
+            'some' =>  $Some,
         ]);
 
     }
@@ -38,6 +41,11 @@ class propertiesController extends Controller
     public function store(Request $request)
     {
 
+        
+   
+        $property = Property::with('PropertyImage')->where('status', true)->get();
+        $Count = $property->count();
+
        
      // Retrieve the values of the checked checkboxes for property types and cities
      $propertyTypes = $request->input('type');
@@ -50,6 +58,7 @@ class propertiesController extends Controller
  
      // Perform filtering based on the selected checkboxes
      $filteredData = property::query();
+
  
      // Filter by property types
      $filteredData = $this->filterData($filteredData, 'type', $propertyTypes);
@@ -63,14 +72,35 @@ class propertiesController extends Controller
      
  
      // Add more filtering conditions based on other checkboxes as needed
+
+        switch ($request->sort_by) {
+            case 'Oldest':
+                $filteredData->orderBy('created_at', 'desc');
+                break;
+            case 'title_asc':
+                $filteredData->orderBy('title', 'asc');
+                break;
+            case 'title_desc':
+                $filteredData->orderBy('title', 'desc');
+                break;
+            default:
+                $filteredData->orderBy('created_at', 'asc');
+                break;
+        }
  
      // Execute the query and retrieve the filtered data
      $filteredData = $filteredData->get();
+     $Some =  $filteredData->count();
 
-  
+     
  
      // Pass the filtered data to the view or perform other actions as needed
-     return view('pages.properties', ['properties' => $filteredData]);
+     return view('pages.properties', [
+    'properties' => $filteredData,
+     'count' => $Count,
+     'some' =>  $Some,
+    
+    ]);
  }
  
  public function filterData($query, $filterType, $filterValues)

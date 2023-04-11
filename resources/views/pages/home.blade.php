@@ -13,12 +13,14 @@
     <div class="imageContainerAll">
         <nav class="navbar navbar-expand-lg">
           <div class="container">
+            <a href="/home">
             <img
               class="logo"
               src='assets//img/icons/logo.png'
               alt=""
               style="width: 145px"
             />
+          </a>
             <button
               class="navbar-toggler"
               type="button"
@@ -45,44 +47,67 @@
                   <img id="plusIconWhite" src= '../../public/assets//img//icons/iconPlus.png' alt="" />
                   DÉPOSER UNE ANNONCE
                 </button>
-              </form>
+             
 
                 @auth
             
 
-
+              </form>
                    
-                    <div>
-
-                    
-                      <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image">
-                    <div class="dropdown_Navbar d-inline-block" style="cursor: pointer">
-                      <span class="text-white">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
-                      <span class="arrow-dwn text-white navbar_arrow_down" style="cursor: pointer" id="propertyinfo_arrow">
-                        <i class="fa-solid fa-chevron-down bg-none"></i>
-                      </span>
-                      <div class="bg-white d-none navnar_dropdown_options position-absolute ">
-                        <div class="profile_dd ">
-                          <ul class="profile_ul list-unstyled p-0">
-                            <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
-                                </span>Profile</a>
-                            </li>
-                            <form action="/logout" method="POST">
-                              @csrf
-                            <button style="border: none;
-                            background-color: transparent;"> <i class="fas fa-sign-out-alt"></i> <span>logout</span> </button>
+                    <div style="MARGIN: 0PX 14px;"  >
+                      <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
+                      width: 42px;">
+                      <div class="dropdown_Navbar d-inline-block" style="cursor: pointer ; MARGIN-LEFT: 5px;">
+                          <span class="text-white">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
+                          <span class="arrow-dwn text-white navbar_arrow_down  position-relative" style="cursor: pointer" id="propertyinfo_arrow">
+                            <i class="fa-solid fa-chevron-down bg-none"></i>
+                          </span>
+                          <div class="bg-white d-none navnar_dropdown_options position-absolute " style="    right: 190px;
+                          TOP: 80px;">
+                            {{-- <div class="profile_dd ">
+                              <ul class="profile_ul list-unstyled p-0">
+                                <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
+                                    </span>Profile</a>
+                                </li>
+                                <form action="/logout" method="POST">
+                                  @csrf
+                                <button style="border: none;
+                                background-color: transparent;"> <i class="fas fa-sign-out-alt"></i> <span>logout</span> </button>
+                                
+                              </ul>
+                            </div> --}}
+                            <div class="dropdownmenuFilter" style="    opacity: 1;
+                            visibility: visible;">
+                            <div class="optionContainer">
+                              <i class='bx bxs-user  navDropIcon'></i>
+                            <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">  <span class="option" href="">Profile</span> </button>
+                           
+                            </div>
+                            <div class="optionContainer">
+                              <i class='bx bxs-heart  navDropIcon'></i>
+                            <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="">Favourites</span> </button>
                             
-                          </ul>
-                        </div>
+                            </div>
+
+                            <div class="optionContainer">
+                              <i class='bx bx-log-out-circle  navDropIcon'></i>
+                            <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="">Logout</span> </button>
+                           
+                            </div>
+                          </div>
                       </div>
                     </div>
-                      </div>
-                    </div>
+
+  
+
+      
+                    
 
                  
                   </form>
 
-                </div>
+            
+                  
                  
 
                
@@ -111,6 +136,13 @@
               placeholder="Dans quelle ville/quartier "
               type="text"
             />
+
+            <div class="con" style="width: 45%;height: 212PX;OVERFLOW: auto;">
+
+            <ul class="citiesUlContainer p-0 pt-2">
+
+            </ul>
+          </div>
           </center>
         </div>
       </div>

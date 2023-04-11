@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\property;
+use Ramsey\Uuid\FeatureSet;
 
+use Carbon\Carbon;
 class propertyController extends Controller
 {
     /**
@@ -38,14 +40,34 @@ class propertyController extends Controller
     {
         
         $property = Property::with('PropertyImage','user')->find($id);
+        $city  = $property->city;
+        $propertyId = $property->id;
+
+       
 
         $Features =  explode(',',$property->Features );
+
+        $Featureproperties = Property::with('PropertyImage','user')->where('city',$city) ->where('id', '!=', $propertyId)->take(4)->get();
+        foreach ($Featureproperties as $Featureproperty) {
+          
+
+            $createdAt = new Carbon($Featureproperty->created_at);
+            $formattedCreatedAt = $createdAt->format('F d, Y');
+            $Featureproperty->format = $formattedCreatedAt;
+        }
+       
+
+        
 
 
         return view('pages.property',[
             'property' => $property ,
-            'Features' => $Features
+            'Features' => $Features,
+
+            'Featureproperties' => $Featureproperties
         ]);
+
+
     }
 
     /**

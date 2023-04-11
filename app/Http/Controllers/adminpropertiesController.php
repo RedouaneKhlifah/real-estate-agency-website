@@ -12,7 +12,7 @@ class adminpropertiesController extends Controller
      */
     public function index()
     {
-        $property = Property::with('PropertyImage')->where('status', false)->get();
+        $property = Property::with('PropertyImage')->orderBy('created_at')->get();
 
 
 
@@ -35,7 +35,24 @@ class adminpropertiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $propertyId = $request->property_id;
+    
+        // Retrieve the property by its ID
+
+        $property = Property::find($propertyId);
+    
+
+            // Update the "status" column based on its current value
+            $property->status = !$property->status;
+            $property->save();
+            
+            // Return a JSON response with an empty array and an appropriate HTTP status code
+            $statusCode = $property->status ? 200 : 400;
+
+            return response()->json([], $statusCode);
+ 
+        
     }
 
     /**
