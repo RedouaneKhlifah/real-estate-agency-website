@@ -72,20 +72,26 @@
                     </div> --}}
                     <div class="dropdownmenuFilter" style="    opacity: 1;
                     visibility: visible;">
+                     
                     <div class="optionContainer">
+                     
                       <i class='bx bxs-user  navDropIcon'></i>
-                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">  <span class="option" href="">Profile</span> </button>
-                   
-                    </div>
+                      <a href="/profile"> 
+                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">   <span class="option" href="/profile">Profile</span> </button>
+                  </a>
+                  </div>
                     <div class="optionContainer">
                       <i class='bx bxs-heart  navDropIcon'></i>
-                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="">Favourites</span> </button>
-                    
+                      <a href="/Favourites"> 
+                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="/Favourites">Favourites</span> </button>
+                      </a> 
                     </div>
 
                     <div class="optionContainer">
                       <i class='bx bx-log-out-circle  navDropIcon'></i>
-                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="">Logout</span> </button>
+                      <a href="/logout"> 
+                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="/logout">Logout</span> </button>
+                      </a> 
                    
                     </div>
                   </div>
@@ -283,12 +289,15 @@
                     <form class="saveIconContainer" data-id="{{$property->id}}">
                       @csrf
                       
+                      @if ($liked)
+                      <i class="fa-regular  fa-heart fa-solid"></i>               
+                      @else
+                      <i class="fa-regular fa-heart"></i>   
                       
-                      <i class="fa-regular fa-heart"></i> 
+                      @endif
+                      
 
                       <span class="saveText ">Save</span>
-                  
-                   
                      
 
                     </form>
@@ -301,7 +310,6 @@
                           <img
                             class="ownerImage"
                             src  = "{{ url('/assets/img/users/' . $property->user->profile_Image) }}"
-                            
                             alt=""
                           />
                         </div>
@@ -369,7 +377,7 @@
                       <img class="featuredPropertyImage" src="{{url('assets/img/uploads/'.$Featureproperty->PropertyImage[0]->image)}}"  alt="">
                     </div>
                     <div class="featuredPropertiesInfo">
-                      <a class="title" href=""> {{$Featureproperty->title}}</a>
+                      <a class="title" href="/property/{{$Featureproperty->id}}"> {{$Featureproperty->title}}</a>
                       <span class="date">{{$Featureproperty->format}}</span>
                       <div id="location" class="locationconatiner">
                       <i class="fa-solid fa-location-dot"></i>

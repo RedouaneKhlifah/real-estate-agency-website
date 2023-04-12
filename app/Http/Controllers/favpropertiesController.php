@@ -16,7 +16,7 @@ class favpropertiesController extends Controller
     {
         $property = property::with('PropertyImage','like')->whereHas('like', function($query){
             $query->where('user_id',auth()->id());
-        })->paginate(1);
+        })->paginate(3);
 
     
         

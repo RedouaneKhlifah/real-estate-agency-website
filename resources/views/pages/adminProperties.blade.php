@@ -120,7 +120,7 @@
                                 </td>
                                 <td>08.14.2020</td>
                                 <td class="actions text-center">
-                                    <button class="border-0 bg-danger text-white statusBtn"  style="    width: 100px; height: 30px; border-radius:20px" data-id="{{$property->id}}">unvalide</button>
+                                    <button class="border-0 {{$property->status ?'bg-success':'bg-danger'}} text-white statusBtn"  style="    width: 100px; height: 30px; border-radius:20px" data-id="{{$property->id}}">{{$property->status ?'Valid':'Pending'}}</button>
                                 </td>
                             </tr> 
 
@@ -132,11 +132,28 @@
                     <div class="pagination-container">
                         <nav>
                             <ul class="pagination">
-                                <li class="page-item"><a class="btn btn-common" href="#"><i class="lni-chevron-left"></i> Previous </a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="btn btn-common" href="#">Next <i class="lni-chevron-right"></i></a></li>
+                                <li class="page-item">
+                                    <!-- Display Previous button with link to previous page -->
+                                    @if($properties->currentPage() > 1)
+                                        <a class="btn btn-common" href="{{ $properties->previousPageUrl() }}">
+                                            <i class="lni-chevron-left"></i> Previous
+                                        </a>
+                                    @endif
+                                </li>
+                                <!-- Display page number links -->
+                                @for($i = 1; $i <= $properties->lastPage(); $i++)
+                                    <li class="page-item">
+                                        <a class="page-link" @if($properties->currentPage() == $i) style="background: #ff385c; color:white" @endif href="{{ $properties->url($i) }}">{{ $i }}</a>
+                                    </li>
+                                @endfor
+                                <li class="page-item">
+                                    <!-- Display Next button with link to next page -->
+                                    @if($properties->currentPage() < $properties->lastPage())
+                                        <a class="btn btn-common" href="{{ $properties->nextPageUrl() }}">
+                                            Next <i class="lni-chevron-right"></i>
+                                        </a>
+                                    @endif
+                                </li>
                             </ul>
                         </nav>
                     </div>

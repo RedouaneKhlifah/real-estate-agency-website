@@ -50,6 +50,8 @@ class propertiesController extends Controller
      // Retrieve the values of the checked checkboxes for property types and cities
      $propertyTypes = $request->input('type');
      $cities = $request->input('city');
+ 
+
 
      $features = $request->input('FEATURES', []); 
     
@@ -57,7 +59,7 @@ class propertiesController extends Controller
      
  
      // Perform filtering based on the selected checkboxes
-     $filteredData = property::query();
+     $filteredData = property::query()->where('status', true);
 
  
      // Filter by property types

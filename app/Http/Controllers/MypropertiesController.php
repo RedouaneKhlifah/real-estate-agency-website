@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\property;
 use Illuminate\Http\Request;
 use App\Models\like;
-
-
+use PhpParser\Builder\Property as BuilderProperty;
 
 class MypropertiesController extends Controller
 {
@@ -16,7 +15,7 @@ class MypropertiesController extends Controller
     public function index()
     {
         
-        $property = property::with('PropertyImage')->where('user_id',auth()->id())->paginate(5);
+        $property = property::with('PropertyImage')->where('user_id',auth()->id())->paginate(3);
 
         
         $properties = Property::with('PropertyImage')->get();
@@ -81,6 +80,9 @@ class MypropertiesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $property  = property::find($id);
+        dd($property);
+        $property->delete();
+        redirect()->back();
     }
 }

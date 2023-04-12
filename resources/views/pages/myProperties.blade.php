@@ -118,6 +118,7 @@
                                             <li class="mb-0"><i class="fa fa-star" style="color:#ffc107"></i>
                                             </li>
                                             <li class="ml-3 pl-10">(6 Reviews)</li>
+                                            <button class="border-0 {{$property->status ?'bg-success':'bg-danger'}}  text-white statusBtn"  style="    width: 80px; height: 20px; border-radius:20px" data-id="{{$property->id}}">{{$property->status ?'Valid':'Pending'}}</button>
                                         </ul>
                                     </div>
                                 </td>
@@ -125,7 +126,7 @@
                                 <td>163</td>
                                 <td class="actions">
                                     <a href="#" class="edit"><i class="lni-pencil"></i>Edit</a>
-                                    <a href="#"><i class="far fa-trash-alt"></i></a>
+                                    <a href="/delete/{{$property->id}} "><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr> 
 

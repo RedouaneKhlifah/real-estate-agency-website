@@ -54,49 +54,53 @@
 
               </form>
                    
-                    <div style="MARGIN: 0PX 14px;"  >
-                      <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
-                      width: 42px;">
-                      <div class="dropdown_Navbar d-inline-block" style="cursor: pointer ; MARGIN-LEFT: 5px;">
-                          <span class="text-white">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
-                          <span class="arrow-dwn text-white navbar_arrow_down  position-relative" style="cursor: pointer" id="propertyinfo_arrow">
-                            <i class="fa-solid fa-chevron-down bg-none"></i>
-                          </span>
-                          <div class="bg-white d-none navnar_dropdown_options position-absolute " style="    right: 190px;
-                          TOP: 80px;">
-                            {{-- <div class="profile_dd ">
-                              <ul class="profile_ul list-unstyled p-0">
-                                <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
-                                    </span>Profile</a>
-                                </li>
-                                <form action="/logout" method="POST">
-                                  @csrf
-                                <button style="border: none;
-                                background-color: transparent;"> <i class="fas fa-sign-out-alt"></i> <span>logout</span> </button>
-                                
-                              </ul>
-                            </div> --}}
-                            <div class="dropdownmenuFilter" style="    opacity: 1;
-                            visibility: visible;">
-                            <div class="optionContainer">
-                              <i class='bx bxs-user  navDropIcon'></i>
-                            <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">  <span class="option" href="">Profile</span> </button>
-                           
-                            </div>
-                            <div class="optionContainer">
-                              <i class='bx bxs-heart  navDropIcon'></i>
-                            <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="">Favourites</span> </button>
-                            
-                            </div>
-
-                            <div class="optionContainer">
-                              <i class='bx bx-log-out-circle  navDropIcon'></i>
-                            <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="">Logout</span> </button>
-                           
-                            </div>
+              <div style="MARGIN: 0PX 14px;"  >
+                <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
+                width: 42px;">
+                <div class="dropdown_Navbar d-inline-block" style="cursor: pointer ; MARGIN-LEFT: 5px;">
+                    <span class="userName text-white " style="font-weight: 500;">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
+                    <span class="arrow-dwn text-white navbar_arrow_down  position-relative" style="cursor: pointer " id="propertyinfo_arrow">
+                      <i id="navArrow" class="fa-solid fa-chevron-down bg-none text-white" ></i>
+                    </span>
+                    <div class="bg-white d-none navnar_dropdown_options position-absolute " style="    right: 190px;
+                    TOP: 80px;">
+                      {{-- <div class="profile_dd ">
+                        <ul class="profile_ul list-unstyled p-0">
+                          <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
+                              </span>Profile</a>
+                          </li>
+                          <form action="/logout" method="POST">
+                            @csrf
+                          <button style="border: none;
+                          background-color: transparent;"> <i class="fas fa-sign-out-alt"></i> <span>logout</span> </button>
+                          
+                        </ul>
+                      </div> --}}
+                      <div class="dropdownmenuFilter" style="    opacity: 1;
+                      visibility: visible;">
+                      <div class="optionContainer">
+                        <i class='bx bxs-user  navDropIcon'></i>
+                        <a href="/profile"> 
+                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">   <span class="option" href="/profile">Profile</span> </button>
+                        </a>
+                        </div>
+                          <div class="optionContainer">
+                            <i class='bx bxs-heart  navDropIcon'></i>
+                            <a href="/Favourites"> 
+                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="/Favourites">Favourites</span> </button>
+                            </a> 
                           </div>
+      
+                          <div class="optionContainer">
+                            <i class='bx bx-log-out-circle  navDropIcon'></i>
+                            <a href="/logout"> 
+                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="/logout">Logout</span> </button>
+                            </a> 
+                     
                       </div>
                     </div>
+                </div>
+              </div>
 
   
 
@@ -138,10 +142,16 @@
             />
 
             <div class="con" style="width: 45%;height: 212PX;OVERFLOW: auto;">
+              <form action="/properties" method="Post">
+                @csrf
 
             <ul class="citiesUlContainer p-0 pt-2">
+             
 
+          
             </ul>
+
+              </form>
           </div>
           </center>
         </div>
@@ -247,15 +257,16 @@
           </p>
         </div>
 
-        <div class="container boxesContaoner">
+        <form action="/properties" method="POST" class="container boxesContaoner">
+          @csrf
           <div class="row exploreRow">
-            <div class="col col-md-4">
+            <div class="col col-md-4" style="padding:0px 12px">
               <div class="card">
-                <div class="cardImageContainer">
+                <div class="cardImageContainer" id="locationcardImageContainer">
                   <img
                     class="card-img-top"
                     id="locationimage"
-                    src= 'assets/img/uploads/p-1.jpg'
+                    src= 'assets/img/uploads/rabat.jpg'
                     alt="Card image cap"
                   />
                 </div>
@@ -267,13 +278,46 @@
                         id="locationnamecontainer"
                       >
                         <h4 class="locationName">
-                          San Francisco, California
+                          Rabat, Morocco
+                        </h4>
+                        1 property
+                      </div>
+                    </div>
+                    <label class="BoxButtonConatiner">
+                      <button class="round-button" name="city[]" value="rabat">
+                        <span class="ti-angle-right"></span>
+                      </button>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-md-4" style="padding:0px 12px">
+              <div class="card">
+                <div class="cardImageContainer" id="locationcardImageContainer">
+                  <img
+                    class="card-img-top"
+                    id="locationimage"
+                    src= 'assets/img/uploads/casablanca.jpg'
+                    alt="Card image cap"
+                  />
+                </div>
+                <div class="card-body">
+                  <div class="boxfooter">
+                    <div class="BoxLocationConationer">
+                      <div
+                        class="locationconatiner"
+                        id="locationnamecontainer"
+                      >
+                        <h4 class="locationName">
+                          Casablanca, Morocco
                         </h4>
                         1 property
                       </div>
                     </div>
                     <div class="BoxButtonConatiner">
-                      <button class="round-button">
+                      <button class="round-button"  name="city[]" value="Casablanca">
                         <span class="ti-angle-right"></span>
                       </button>
                     </div>
@@ -281,10 +325,143 @@
                 </div>
               </div>
             </div>
+
+            <div class="col col-md-4" style="padding:0px 12px" >
+              <div class="card">
+                <div class="cardImageContainer" id="locationcardImageContainer">
+                  <img
+                    class="card-img-top"
+                    id="locationimage"
+                    src= 'assets/img/uploads/safi.jpg'
+                    alt="Card image cap"
+                  />
+                </div>
+                <div class="card-body">
+                  <div class="boxfooter">
+                    <div class="BoxLocationConationer">
+                      <div
+                        class="locationconatiner"
+                        id="locationnamecontainer"
+                      >
+                        <h4 class="locationName">
+                          Safi, Morocco
+                        </h4>
+                        1 property
+                      </div>
+                    </div>
+                    <div class="BoxButtonConatiner">
+                      <button class="round-button" name="city[]" value="Safi">
+                        <span class="ti-angle-right"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-md-4" style="padding:0px 12px">
+              <div class="card">
+                <div class="cardImageContainer" id="locationcardImageContainer">
+                  <img
+                    class="card-img-top"
+                    id="locationimage"
+                    src= 'assets/img/uploads/tanger.jpg'
+                    alt="Card image cap"
+                  />
+                </div>
+                <div class="card-body">
+                  <div class="boxfooter">
+                    <div class="BoxLocationConationer">
+                      <div
+                        class="locationconatiner"
+                        id="locationnamecontainer"
+                      >
+                        <h4 class="locationName">
+                          tangier, Morocco
+                        </h4>
+                        1 property
+                      </div>
+                    </div>
+                    <div class="BoxButtonConatiner">
+                      <button class="round-button" name="city[]" value="tangier">
+                        <span class="ti-angle-right"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-md-4" style="padding:0px 12px">
+              <div class="card">
+                <div class="cardImageContainer" id="locationcardImageContainer">
+                  <img
+                    class="card-img-top"
+                    id="locationimage"
+                    src= 'assets/img/uploads/Chefchaouen.jpg'
+                    alt="Card image cap"
+                  />
+                </div>
+                <div class="card-body">
+                  <div class="boxfooter">
+                    <div class="BoxLocationConationer">
+                      <div
+                        class="locationconatiner"
+                        id="locationnamecontainer"
+                      >
+                        <h4 class="locationName">
+                          Chefchaouen, Morocco
+                        </h4>
+                        1 property
+                      </div>
+                    </div>
+                    <div class="BoxButtonConatiner">
+                      <button class="round-button" name="city[]" value="Chefchaouen">
+                        <span class="ti-angle-right"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-md-4" style="padding:0px 12px">
+              <div class="card">
+                <div class="cardImageContainer" id="locationcardImageContainer">
+                  <img
+                    class="card-img-top"
+                    id="locationimage"
+                    src= 'assets/img/uploads/yousoufia.png'
+                    alt="Card image cap"
+                  />
+                </div>
+                <div class="card-body">
+                  <div class="boxfooter">
+                    <div class="BoxLocationConationer">
+                      <div
+                        class="locationconatiner"
+                        id="locationnamecontainer"
+                      >
+                        <h4 class="locationName">
+                          Yousoufia, Morocco
+                        </h4>
+                        1 property
+                      </div>
+                    </div>
+                    <div class="BoxButtonConatiner">
+                      <button class="round-button" name="city[]" value="Yousoufia">
+                        <span class="ti-angle-right"></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
           </div>
-        </div>
+        </form>
         <div class="browseContainer">
-          <a class="browseMore" href="">
+          <a class="browseMore" href="/properties">
             Browse More Locations
           </a>
         </div>

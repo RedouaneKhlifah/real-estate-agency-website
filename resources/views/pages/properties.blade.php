@@ -160,18 +160,22 @@
                       visibility: visible;">
                       <div class="optionContainer">
                         <i class='bx bxs-user  navDropIcon'></i>
-                      <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">  <span class="option" href="">Profile</span> </button>
-                     
-                      </div>
-                      <div class="optionContainer">
-                        <i class='bx bxs-heart  navDropIcon'></i>
-                      <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="">Favourites</span> </button>
-                      
-                      </div>
-
-                      <div class="optionContainer">
-                        <i class='bx bx-log-out-circle  navDropIcon'></i>
-                      <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="">Logout</span> </button>
+                        <a href="/profile"> 
+                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">   <span class="option" href="/profile">Profile</span> </button>
+                        </a>
+                        </div>
+                          <div class="optionContainer">
+                            <i class='bx bxs-heart  navDropIcon'></i>
+                            <a href="/Favourites"> 
+                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="/Favourites">Favourites</span> </button>
+                            </a> 
+                          </div>
+      
+                          <div class="optionContainer">
+                            <i class='bx bx-log-out-circle  navDropIcon'></i>
+                            <a href="/logout"> 
+                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="/logout">Logout</span> </button>
+                            </a> 
                      
                       </div>
                     </div>
@@ -232,6 +236,7 @@
                 <input type="text" class="searchInput" placeholder="Kywords...">
             
             </div>
+            
         <div class="container">
             <div class="select-btn">
                 <span class="btn-text">WHERE</span>

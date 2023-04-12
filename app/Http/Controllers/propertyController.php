@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\property;
+use App\Models\like;
 use Ramsey\Uuid\FeatureSet;
 
 use Carbon\Carbon;
@@ -42,7 +43,8 @@ class propertyController extends Controller
         $property = Property::with('PropertyImage','user')->find($id);
         $city  = $property->city;
         $propertyId = $property->id;
-
+        
+        $liked  = like::where('user_id',$property->user_id)->where('property_id',$propertyId)->exists();;
        
 
         $Features =  explode(',',$property->Features );
@@ -63,8 +65,8 @@ class propertyController extends Controller
         return view('pages.property',[
             'property' => $property ,
             'Features' => $Features,
-
-            'Featureproperties' => $Featureproperties
+            'Featureproperties' => $Featureproperties,
+            'liked' => $liked  
         ]);
 
 

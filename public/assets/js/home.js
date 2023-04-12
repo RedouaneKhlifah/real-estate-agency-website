@@ -29,13 +29,17 @@ searchHeaderInput.addEventListener("input", async (e) => {
             city.toLowerCase().includes(searchCity.toLowerCase())
         );
 
-        filteredCities.forEach((city) => {
+        filteredCities.forEach((city, index) => {
             citiesUlContainer.innerHTML += `
-            <li class="list-unstyled d-flex  align-items-center justify-content-between Pb-3" style="border-radius: 0px; height: 50px;background: #ffffff;">
-            <a class="text-black list-unstyled" style="    FONT-SIZE: 19px;PADDING-LEFT: 30PX;" href="">${city}</a>
+            <label for="city${index}" class="list-unstyled d-flex  align-items-center justify-content-between m-0 " style="cursor:pointer ;border-radius: 0px; height: 50px;background: #ffffff;">
+            <span class="text-black list-unstyled " style=" font-weight-normal   FONT-SIZE: 19px;PADDING-LEFT: 30PX;" href="">${city}</span>
+            
+           
             <i class='bx bx-right-arrow-circle' style="font-size: 20px;PADDING-RIGHT: 40PX;
         "></i>
-            </li>
+        <input id="city${index}" type="submit" name="city[]" value=${city} hidden >
+            </label>
+           
             `;
         });
     }

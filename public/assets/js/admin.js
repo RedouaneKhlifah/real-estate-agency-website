@@ -14,13 +14,13 @@ $(".statusBtn").on("click", function () {
 
         success: (response) => {
             console.log(response);
-            $(this).text("valid");
+            $(this).text("Valid");
             $(this).addClass("bg-success").removeClass("bg-danger");
         },
         error: (error) => {
             console.log(error);
             $(this).addClass("bg-danger").removeClass("bg-success");
-            $(this).text("unvalide");
+            $(this).text("Pending");
         },
         complete: () => {
             $(this).prop("disabled", false);

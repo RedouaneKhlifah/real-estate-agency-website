@@ -10,6 +10,7 @@ use App\Http\Controllers\propertyController;
 use App\Http\Controllers\MypropertiesController;
 use App\Http\Controllers\favpropertiesController;
 use App\Http\Controllers\adminpropertiesController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\ApiController;
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +39,8 @@ Route::post('/user/authenticate',[userController::class,'authenticate']);
 
 
 
-Route::resource('/dashbord',dashbordController::class);
+Route::resource('/dashboard', 'DashboardController')->middleware('auth');
+
 
 
 Route::resource('/addproperty',AddPropertyController::class);
@@ -48,8 +50,13 @@ Route::resource('/property', PropertyController::class);
 
 Route::resource('/Myproperties',MypropertiesController::class);
 
+
+
 Route::resource('/Favourites',favpropertiesController::class);
 
-Route::resource('/unvalidprop',adminpropertiesController::class);
+Route::resource('/Adminprop',adminpropertiesController::class);
 
 Route::get('/moroccan-cities', [ApiController::class, 'getMoroccanCities']);
+
+
+Route::resource('/profile',profileController::class);

@@ -12,7 +12,7 @@ class adminpropertiesController extends Controller
      */
     public function index()
     {
-        $property = Property::with('PropertyImage')->orderBy('created_at')->get();
+        $property = Property::with('PropertyImage')->orderBy('created_at')->paginate(3);
 
 
 
