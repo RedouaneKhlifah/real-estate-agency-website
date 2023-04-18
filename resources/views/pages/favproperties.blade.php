@@ -8,13 +8,14 @@
                 <div class="user-profile-box mb-0">
                     <div class="sidebar-header">
                         <img
-                            src="assets/img/icons/logo.png"
+                            src="{{url('assets/img/icons/logo.png')}}"
                             alt="header-logo2.png"
                         />
                     </div>
                     <div class="header clearfix">
                         <img
-                            src="assets/img/users/ts-1.jpg"
+                            
+                            src="{{ url('assets/img/users/' . $user->profile_Image) }}"
                             alt="avatar"
                             class="img-fluid profile-img"
                         />
@@ -25,28 +26,28 @@
                     <div class="detail clearfix">
                         <ul class="mb-0">
                             <li>
-                                <a href="http://easyrent/dashbord">
+                                <a href="/dashboard">
                                     <i class="fa fa-map-marker"></i> Dashboard
                                 </a>
                             </li>
                             <li>
                                 <a
                                    
-                                    href="http://easyrent/addproperty"
+                                    href="/addproperty"
                                 >
                                     <i class="fa fa-list" aria-hidden="true"></i
                                     >Add Property
                                 </a>
                             </li>
                             <li>
-                                <a  href="my-listings.html">
+                                <a  class="active" href="/Myproperties">
                                     
                                     <i class="fa fa-list" aria-hidden="true"></i
                                     >My Properties
                                 </a>
                             </li>
                             <li>
-                                <a class="active"  href="favorited-listings.html">
+                                <a href="Favourites">
                                     <i
                                         class="fa fa-heart"
                                         aria-hidden="true"
@@ -56,7 +57,7 @@
                             </li>
 
                             <li>
-                                <a href="user-profile.html">
+                                <a href="/profile">
                                     <i class="fa fa-user"></i>Profile
                                 </a>
                             </li>
@@ -67,7 +68,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <a href="/logout">
                                     <i class="fas fa-sign-out-alt"></i>Log Out
                                 </a>
                             </li>

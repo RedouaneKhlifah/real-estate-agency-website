@@ -7,10 +7,10 @@
 
 <nav class="navbar navbar-expand-lg">
   <div class="container">
-    <a href="/home">
+      <a href="/home">
     <img
       class="logo"
-      src= "{{url('assets//img/icons/logoBlue.png')}}" 
+      src='assets//img/icons/logoBlue.png'
       alt=""
       style="width: 145px"
     />
@@ -31,25 +31,24 @@
       id="navbarSupportedContent"
     >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-      <form class="d-flex" role="search">
+      <a href="/addproperty">
         <button
           id="addAnnounceBtn"
           class="btn loginbtn"
           type="submit"
         >
-          <img id="plusIcon" src= "{{url( 'assets/img/icons/plus_icon.png')}}" alt="" />
-          <img id="plusIconWhite" src= "{{url( 'assets//img//icons/iconPlus.png')}}" alt="" />
+          <img id="plusIcon" src='assets/img/icons/plus_icon.png' alt="" />
+          <img id="plusIconWhite" src= 'assets//img//icons/iconPlus.png' alt="" />
           DÉPOSER UNE ANNONCE
         </button>
-     
+      </a>
 
         @auth
     
 
-      </form>
            
             <div style="MARGIN: 0PX 14px;"  >
-              <img src={{ url('assets/img/users/' . auth()->user()->profile_Image) }} class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
+              <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
               width: 42px;">
               <div class="dropdown_Navbar d-inline-block" style="cursor: pointer ; MARGIN-LEFT: 5px;">
                   <span class="userName" style="font-weight: 500;">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
@@ -72,26 +71,26 @@
                     </div> --}}
                     <div class="dropdownmenuFilter" style="    opacity: 1;
                     visibility: visible;">
-                     
                     <div class="optionContainer">
-                     
                       <i class='bx bxs-user  navDropIcon'></i>
                       <a href="/profile"> 
-                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">   <span class="option" href="/profile">Profile</span> </button>
-                  </a>
-                  </div>
-                    <div class="optionContainer">
-                      <i class='bx bxs-heart  navDropIcon'></i>
-                      <a href="/Favourites"> 
-                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="/Favourites">Favourites</span> </button>
-                      </a> 
-                    </div>
-
-                    <div class="optionContainer">
-                      <i class='bx bx-log-out-circle  navDropIcon'></i>
-                      <a href="/logout"> 
-                    <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="/logout">Logout</span> </button>
-                      </a> 
+                        <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">   <span class="option" href="/profile">Profile</span> </button>
+                      </a>
+                      </div>
+                        <div class="optionContainer">
+                          <i class='bx bxs-heart  navDropIcon'></i>
+                          <a href="/Favourites"> 
+                        <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="/Favourites">Favourites</span> </button>
+                          </a> 
+                        </div>
+    
+                        <div class="optionContainer">
+                          <i class='bx bx-log-out-circle  navDropIcon'></i>
+                         <form action="/logout" method="POST">
+                          @csrf
+                        <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option">Logout</span> </button>
+                      </form>
+                       
                    
                     </div>
                   </div>
@@ -104,7 +103,7 @@
             
 
          
-          </form>
+       
 
     
           

@@ -5,7 +5,7 @@ $(".statusBtn").on("click", function () {
 
     $(this).prop("disabled", true);
     $.ajax({
-        url: "/unvalidprop",
+        url: "/Adminprop",
         type: "POST",
         data: { property_id: property_id },
         headers: {

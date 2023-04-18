@@ -10,13 +10,14 @@
                 <div class="user-profile-box mb-0">
                     <div class="sidebar-header">
                         <img
-                            src="assets/img/icons/logo.png"
+                            src="{{url('assets/img/icons/logo.png')}}"
                             alt="header-logo2.png"
                         />
                     </div>
                     <div class="header clearfix">
                         <img
-                            src="assets/img/users/ts-1.jpg"
+                            
+                            src="{{ url('assets/img/users/' . $user->profile_Image) }}"
                             alt="avatar"
                             class="img-fluid profile-img"
                         />
@@ -27,28 +28,28 @@
                     <div class="detail clearfix">
                         <ul class="mb-0">
                             <li>
-                                <a href="http://easyrent/dashbord">
+                                <a href="/dashboard">
                                     <i class="fa fa-map-marker"></i> Dashboard
                                 </a>
                             </li>
                             <li>
                                 <a
                                    
-                                    href="http://easyrent/addproperty"
+                                    href="/addproperty"
                                 >
                                     <i class="fa fa-list" aria-hidden="true"></i
                                     >Add Property
                                 </a>
                             </li>
                             <li>
-                                <a  class="active" href="my-listings.html">
+                                <a  class="active" href="/Myproperties">
                                     
                                     <i class="fa fa-list" aria-hidden="true"></i
                                     >My Properties
                                 </a>
                             </li>
                             <li>
-                                <a href="favorited-listings.html">
+                                <a href="Favourites">
                                     <i
                                         class="fa fa-heart"
                                         aria-hidden="true"
@@ -58,7 +59,7 @@
                             </li>
 
                             <li>
-                                <a href="user-profile.html">
+                                <a href="/profile">
                                     <i class="fa fa-user"></i>Profile
                                 </a>
                             </li>
@@ -69,7 +70,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="index.html">
+                                <a href="/logout">
                                     <i class="fas fa-sign-out-alt"></i>Log Out
                                 </a>
                             </li>
@@ -88,29 +89,19 @@
                     <h4>Profile Details</h4>
                 </div>
                 <div class="sidebar-widget author-widget2">
-                    <div class="author-box clearfix">
+                    <div class="author-box clearfix d-flex align-items-center">
                         <img  src="assets/img/users/ts-1.jpg" alt="author-image" class="author__img">
-                        <h4 class="author__title">Lisa Clark</h4>
-                        <p class="author__meta">Agent of Property</p>
+                        <h4 class="author__title">{{ $user->first_Name}} {{$user->last_Name}}</h4>
+                        
                     </div>
+
                     <ul class="author__contact">
-                        <div class="location_input">
-                        <div class="d-flex align-items-center">
-                        <span class="la la-map-marker"><i class="fa fa-map-marker"></i></span>
-                        <li class="m-0"> 302 Av Park, New York</li>
-                        <input class="hiddenprofileInput" type="text" name="adress" value="" id="">
-                        </div>
-                        <div class="IconProfileType" data-id="{{auth()->id()}}">
-                            
-                        <i id="adreesUpdatePen" class="fa-solid fa-pen-to-square" style="color: #ff385c;"></i>
-                        </div>      
-                        </div>
 
 
 
-                        <li><span class="la la-phone"><i class="fa fa-phone" aria-hidden="true"></i></span><a href="#">(234) 0200 17813</a></li>
+                        <li><span class="la la-phone"><i class="fa fa-phone" aria-hidden="true"></i></span><a href="#">(212) {{$user->phone_Number}} </a></li>
 
-                        <li><span class="la la-envelope-o"><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="#">lisa@gmail.com</a></li>
+                        <li><span class="la la-envelope-o"><i class="fa fa-envelope" aria-hidden="true"></i></span><a href="#">{{$user->email}}</a></li>
                     </ul>
                     {{-- <div class="agent-contact-form-sidebar">
                         <h4>Request Inquiry</h4>
@@ -123,6 +114,17 @@
                         </form>
                     </div> --}}
                 </div>
+            
+                <div class="d-flex justify-content-end">
+                    <a href="/edit">
+                    <p style="background: #ff385c;
+                    PADDING: 7PX 20PX;
+                    COLOR: WHITE;
+                    FONT-WEIGHT: 500;
+                    LETTER-SPACING: 1PX; cursor: pointer;">EDIT</p>
+                </div>
+                </a>
+                
                 <div>
             </div>
 

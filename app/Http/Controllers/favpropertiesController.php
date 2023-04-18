@@ -22,6 +22,7 @@ class favpropertiesController extends Controller
         
         return view('pages.favproperties',[
             'properties' => $property,
+            'user' => auth()->user(),
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\property;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -73,13 +74,14 @@ class UserController extends Controller
 
 
     public function logout(Request $request){
+
         auth()->logout();
         
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/home');
+        return redirect()->back();
 
     }
 
@@ -106,26 +108,62 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
+
+     public function profile(){
+        $user = user::find(auth()->id());
+       
+        return view('pages.profile',[
+            'user' => $user
+        ]);
+    }
+
+
     public function show(string $id)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        $user = user::find(auth()->id());
+       
+        return view('pages.updateProfile',[
+            'user' => $user
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+      
+        $user  = User::find(auth()->id());
+    
+        $fields = $request->validate([
+            'first_Name' => 'required|string',
+            'last_Name' => 'required|string',
+            'phone_Number' => 'required|integer|',
+            'email' => 'required|string|',
+        ]);
+    
+        
+        if ($request->hasFile('profile_Image')) {
+
+        $image = $request['profile_Image'];
+        $title = date('Ymdhis') .'.'. $image->getClientOriginalExtension();
+        $fields['profile_Image'] = $title;
+        }
+    
+     
+        $user->update($fields);
+        return redirect('/profile');
     }
+    
 
     /**
      * Remove the specified resource from storage.

@@ -33,17 +33,23 @@ Route::resource('/home',homeController::class);
 Route::resource('/signup',userController::class);
 
 Route::post('/logout',[userController::class,'logout']);
-Route::get('/login',[userController::class,'login']);
+Route::get('/login',[userController::class,'login'])->name('login');
+Route::get('/edit',[userController::class,'edit']);
+
+Route::post('/update',[userController::class,'update']);
+
+
 
 Route::post('/user/authenticate',[userController::class,'authenticate']);
 
 
 
-Route::resource('/dashboard', 'DashboardController')->middleware('auth');
+Route::resource('/dashboard', dashbordController::class);
 
 
 
-Route::resource('/addproperty',AddPropertyController::class);
+Route::resource('/addproperty',AddPropertyController::class)->middleware('auth');
+
 Route::resource('/properties',propertiesController::class);
 Route::resource('/property', PropertyController::class);
 
@@ -59,4 +65,7 @@ Route::resource('/Adminprop',adminpropertiesController::class);
 Route::get('/moroccan-cities', [ApiController::class, 'getMoroccanCities']);
 
 
-Route::resource('/profile',profileController::class);
+// Route::resource('/profile',profileController::class);
+
+Route::get('/profile',[userController::class,'profile']);
+

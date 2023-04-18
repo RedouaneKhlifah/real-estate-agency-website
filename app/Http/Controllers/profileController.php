@@ -29,7 +29,7 @@ class profileController extends Controller
     {
 
         
-      return response()->json([$request->adress],200);
+      
     }
 
     /**

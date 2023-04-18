@@ -11,123 +11,126 @@
     
 
     <div class="imageContainerAll">
-        <nav class="navbar navbar-expand-lg">
-          <div class="container">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
             <a href="/home">
-            <img
-              class="logo"
-              src='assets//img/icons/logo.png'
-              alt=""
-              style="width: 145px"
-            />
-          </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div
-              class="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-              <form class="d-flex" role="search">
-                <button
-                  id="addAnnounceBtn"
-                  class="btn loginbtn"
-                  type="submit"
-                >
-                  <img id="plusIcon" src='../../public/assets//img/icons/plus_icon.png' alt="" />
-                  <img id="plusIconWhite" src= '../../public/assets//img//icons/iconPlus.png' alt="" />
-                  DÉPOSER UNE ANNONCE
-                </button>
-             
-
-                @auth
-            
-
-              </form>
-                   
-              <div style="MARGIN: 0PX 14px;"  >
-                <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
-                width: 42px;">
-                <div class="dropdown_Navbar d-inline-block" style="cursor: pointer ; MARGIN-LEFT: 5px;">
-                    <span class="userName text-white " style="font-weight: 500;">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
-                    <span class="arrow-dwn text-white navbar_arrow_down  position-relative" style="cursor: pointer " id="propertyinfo_arrow">
-                      <i id="navArrow" class="fa-solid fa-chevron-down bg-none text-white" ></i>
-                    </span>
-                    <div class="bg-white d-none navnar_dropdown_options position-absolute " style="    right: 190px;
-                    TOP: 80px;">
-                      {{-- <div class="profile_dd ">
-                        <ul class="profile_ul list-unstyled p-0">
-                          <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
-                              </span>Profile</a>
-                          </li>
-                          <form action="/logout" method="POST">
-                            @csrf
-                          <button style="border: none;
-                          background-color: transparent;"> <i class="fas fa-sign-out-alt"></i> <span>logout</span> </button>
-                          
-                        </ul>
-                      </div> --}}
-                      <div class="dropdownmenuFilter" style="    opacity: 1;
-                      visibility: visible;">
-                      <div class="optionContainer">
-                        <i class='bx bxs-user  navDropIcon'></i>
-                        <a href="/profile"> 
-                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">   <span class="option" href="/profile">Profile</span> </button>
-                        </a>
-                        </div>
+          <img
+            class="logo"
+            src='assets//img/icons/logo.png'
+            alt=""
+            style="width: 145px"
+          />
+        </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        
+              <a href="/addproperty">
+              <button
+                id="addAnnounceBtn"
+                class="btn loginbtn"
+                type="submit"
+              >
+                <img id="plusIcon" src='assets/img/icons/plus_icon.png' alt="" />
+                <img id="plusIconWhite" src= 'assets//img//icons/iconPlus.png' alt="" />
+                DÉPOSER UNE ANNONCE
+              </button>
+            </a>
+           
+              @auth
+          
+    
+           
+                 
+                  <div style="MARGIN: 0PX 14px;"  >
+                    <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
+                    width: 42px;">
+                    <div class="dropdown_Navbar d-inline-block" style="cursor: pointer ; MARGIN-LEFT: 5px;">
+                        <span class="userName text-white" style="font-weight: 500;">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
+                        <span class="arrow-dwn text-white navbar_arrow_down  position-relative" style="cursor: pointer " id="propertyinfo_arrow">
+                          <i id="navArrow" class="fa-solid fa-chevron-down bg-none text-white" ></i>
+                        </span>
+                        <div class="bg-white d-none navnar_dropdown_options position-absolute " style="    right: 190px;
+                        TOP: 80px;">
+                          {{-- <div class="profile_dd ">
+                            <ul class="profile_ul list-unstyled p-0">
+                              <li class="profile_li"><a class="profile" href="#"><span class="picon"><i class="fas fa-user-alt"></i>
+                                  </span>Profile</a>
+                              </li>
+                              <form action="/logout" method="POST">
+                                @csrf
+                              <button style="border: none;
+                              background-color: transparent;"> <i class="fas fa-sign-out-alt"></i> <span>logout</span> </button>
+                              
+                            </ul>
+                          </div> --}}
+                          <div class="dropdownmenuFilter" style="    opacity: 1;
+                          visibility: visible;">
                           <div class="optionContainer">
-                            <i class='bx bxs-heart  navDropIcon'></i>
-                            <a href="/Favourites"> 
-                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="/Favourites">Favourites</span> </button>
-                            </a> 
+                            <i class='bx bxs-user  navDropIcon'></i>
+                            <a href="/profile"> 
+                              <button class="border-0 bg-transparent" type="submit" name="sort_by" value="latest">   <span class="option" href="/profile">Profile</span> </button>
+                            </a>
+                            </div>
+                              <div class="optionContainer">
+                                <i class='bx bxs-heart  navDropIcon'></i>
+                                <a href="/Favourites"> 
+                              <button class="border-0 bg-transparent" type="submit" name="sort_by" value="Oldest">  <span class="option" href="/Favourites">Favourites</span> </button>
+                                </a> 
+                              </div>
+          
+                              <div class="optionContainer">
+                                <i class='bx bx-log-out-circle  navDropIcon'></i>
+                               <form action="/logout" method="POST">
+                                @csrf
+                              <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option">Logout</span> </button>
+                            </form>
+                             
+                         
                           </div>
-      
-                          <div class="optionContainer">
-                            <i class='bx bx-log-out-circle  navDropIcon'></i>
-                            <a href="/logout"> 
-                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="/logout">Logout</span> </button>
-                            </a> 
-                     
-                      </div>
+                        </div>
                     </div>
-                </div>
-              </div>
-
-  
-
-      
-                    
-
-                 
-                  </form>
-
-            
+                  </div>
+    
+    
+    
+    
                   
-                 
-
+    
                
-                @else
-                <a href="/login">
-                <button id="navbtn" class="btn Register mx-3"  type="button" data-toggle="modal" data-target="#signup">
-                  <img class="icon" src='../../public/assets//img//icons/user-light.svg' alt="" />
-                  SE CONNECTER
-                </button>
-              </a>
-                @endauth
-
-            
-            </div>
+        
+    
+          
+                
+               
+    
+             
+              @else
+              <a href="/login">
+              <button id="navbtn" class="btn Register mx-3"  type="button" data-toggle="modal" data-target="#signup">
+                <img class="icon" src='../../public/assets//img//icons/user-light.svg' alt="" />
+                SE CONNECTER
+              </button>
+            </a>
+              @endauth
+    
+          
           </div>
-        </nav>
+        </div>
+      </nav>
 
         <div class="headerImage">
           <center class="textHeaderContainer">
@@ -143,12 +146,10 @@
 
             <div class="con" style="width: 45%;height: 212PX;OVERFLOW: auto;">
               <form action="/properties" method="Post">
+             
                 @csrf
 
             <ul class="citiesUlContainer p-0 pt-2">
-             
-
-          
             </ul>
 
               </form>

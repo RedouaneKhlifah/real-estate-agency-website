@@ -117,7 +117,7 @@
         id="navbarSupportedContent"
       >
         <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-        <form class="d-flex" role="search">
+        <a href="/addproperty">
           <button
             id="addAnnounceBtn"
             class="btn loginbtn"
@@ -127,12 +127,11 @@
             <img id="plusIconWhite" src= 'assets//img//icons/iconPlus.png' alt="" />
             DÉPOSER UNE ANNONCE
           </button>
-       
+        </a>
 
           @auth
       
 
-        </form>
              
               <div style="MARGIN: 0PX 14px;"  >
                 <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
@@ -173,9 +172,11 @@
       
                           <div class="optionContainer">
                             <i class='bx bx-log-out-circle  navDropIcon'></i>
-                            <a href="/logout"> 
-                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option" href="/logout">Logout</span> </button>
-                            </a> 
+                           <form action="/logout" method="POST">
+                            @csrf
+                          <button class="border-0 bg-transparent" type="submit" name="sort_by" value="title_desc">  <span class="option">Logout</span> </button>
+                        </form>
+                         
                      
                       </div>
                     </div>
@@ -188,7 +189,7 @@
               
 
            
-            </form>
+         
 
       
             

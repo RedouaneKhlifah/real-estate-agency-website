@@ -19,6 +19,7 @@ class adminpropertiesController extends Controller
 
         return view('pages.adminproperties',[
             'properties' => $property ,
+            'user' => auth()->user()
         ]);
     }
 

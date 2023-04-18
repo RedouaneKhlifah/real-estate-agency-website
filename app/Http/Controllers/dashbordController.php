@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\property;
 use App\Models\like;
+use App\Models\user;
 
 class dashbordController extends Controller
 {
@@ -15,6 +16,7 @@ class dashbordController extends Controller
     {
 
         $properties = property::with('PropertyImage')->where('user_id',auth()->id());
+        $user = user::find(auth()->id());
 
         $PublishedProperties = $properties->count();
 
@@ -28,6 +30,7 @@ class dashbordController extends Controller
         return view('pages.dashbord',[
             'PublishedProperties' => $PublishedProperties,
             'totalLikes' => $totalLikes,
+             'user' => $user
         ]);
     }
 
