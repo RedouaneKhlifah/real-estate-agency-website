@@ -19,7 +19,6 @@ arrowdown.forEach((arrow) => {
 });
 
 $(".saveIconContainer").on("click", function () {
-    console.log("Clicked on .saveIconContainer");
     let property_id = $(this).data("id");
     let csrf_token = $('meta[name="csrf-token"]').attr("content");
     let heartIcon = $(this).find(".fa-heart");
@@ -33,10 +32,11 @@ $(".saveIconContainer").on("click", function () {
         },
 
         success: (response) => {
-            console.log(response);
+            console.log("good");
             heartIcon.addClass("fa-solid");
         },
         error: (error) => {
+            console.log("bad");
             heartIcon.removeClass("fa-solid");
         },
         complete: () => {

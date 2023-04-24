@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\property;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,8 +12,37 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('pages.home');
+        $properties = property::inRandomOrder()->take(6)->get();
+      
+   
+        $propertiesByCity = property::groupBy('city')->selectRaw('count(*) as total, city')->pluck('total', 'city');
+        
+        $Rabat = $propertiesByCity->get('Rabat', 0);
+        $Safi = $propertiesByCity->get('Safi', 0);
+        $Casablanca = $propertiesByCity->get('Casablanca', 0);
+        $Yousoufia = $propertiesByCity->get('Yousoufia', 0);
+        $Chefchaouen = $propertiesByCity->get('Chefchaouen', 0);
+        $tangier = $propertiesByCity->get('tangier', 0);
+
+        
+        
+
+   
+
+
+
+        return view('pages.home',[
+            'properties' => $properties,
+            'Rabat' => $Rabat,
+            'Safi' => $Safi,
+            'Casablanca' => $Casablanca,
+            'Yousoufia' => $Yousoufia,
+            'Chefchaouen' => $Chefchaouen,
+            'tangier' => $tangier,
+        ]);
     }
+
+
 
     /**
      * Show the form for creating a new resource.

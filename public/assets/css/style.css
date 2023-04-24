@@ -176,8 +176,6 @@ body {
     color: #2d3954;
 }
 
-
-
 .optionContainer,
 .navDropIcon,
 .option,
@@ -831,7 +829,7 @@ label {
 
 .loginBtn {
     margin-top: 0.6rem;
-    width: 100%;
+    width: 90%;
     border-radius: 50px;
     padding: 20px 0;
     background-color: #1266e3;
@@ -2329,9 +2327,33 @@ select:focus {
     background: #fff;
 }
 
+#propPaginate {
+    color: #1266e3;
+    padding: 10px 15px;
+}
+
+#propPaginate:hover {
+    background: #1266e3;
+    color: #fff;
+}
+
 .pagination-container .pagination .page-item .page-link:hover {
     background: #ff385c;
     color: #fff;
+}
+
+#Previousprop {
+    padding: 10px 15px;
+}
+
+#Nextprop {
+    padding: 10px 15px;
+}
+
+#profile {
+    width: 50%;
+    background-color: WHITE;
+    margin: auto;
 }
 
 @media screen and (max-width: 1024px) {
@@ -2352,12 +2374,12 @@ select:focus {
     .dashboard-bd .left-side {
         width: 80% !important;
     }
+
+    #profile {
+        width: 100%;
+    }
 }
 @media screen and (max-width: 1024px) {
-    .user-profile-box {
-        display: none;
-    }
-
     .col-lg-3.user-dash {
         display: none;
     }
@@ -2835,8 +2857,8 @@ ul.pro-feature-add,
 /*  */
 
 .profile_Image_show {
-    height: 200px;
-    max-width: 200px;
+    height: 120px;
+    max-width: 120px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -2848,8 +2870,8 @@ ul.pro-feature-add,
 
 .profile_image_container {
     position: relative;
-    height: 200px;
-    max-width: 200px;
+    height: 120px;
+    max-width: 120px;
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
@@ -2864,8 +2886,8 @@ ul.pro-feature-add,
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    height: 200px;
-    max-width: 200px;
+    height: 120px;
+    max-width: 120px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -2888,7 +2910,7 @@ ul.pro-feature-add,
 
 .change_image_text {
     top: 70%;
-
+    font-size: 12px;
     color: white;
     z-index: 100;
     width: 100%;
@@ -3138,3 +3160,16 @@ ul.pro-feature-add,
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 } */
+
+.created_diff {
+    background-color: rgb(0 0 0 / 40%);
+    position: absolute;
+    z-index: 100;
+    font-size: 12px;
+    color: WHITE;
+    font-weight: 500;
+    padding-top: 1px;
+    padding-left: 4px;
+    padding-right: 3px;
+    border-bottom-right-radius: 5px;
+}

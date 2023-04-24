@@ -31,7 +31,7 @@
         action="/user/authenticate"
         method="post"
       >
-      @error('email')
+      @error('error')
       <div class="alert alert-warning d-block" role="alert"><strong>ERROR</strong>: Email or Password is incorrect.</div> 
       @enderror
 
@@ -45,6 +45,7 @@
             class=" form-input"
             size="20"
             placeholder="email"
+            value="{{old('email')}}"
           />
         </p>
         <p class="login-password form-group">

@@ -41,10 +41,17 @@ class propertyController extends Controller
     {
         
         $property = Property::with('PropertyImage','user')->find($id);
+
+        if (!$property) {
+            return redirect('/properties');
+        }
+      
         $city  = $property->city;
         $propertyId = $property->id;
         
-        $liked  = like::where('user_id',$property->user_id)->where('property_id',$propertyId)->exists();;
+        $liked  = like::where('user_id',auth()->id())->where('property_id',$propertyId)->exists();
+       
+
        
 
         $Features =  explode(',',$property->Features );

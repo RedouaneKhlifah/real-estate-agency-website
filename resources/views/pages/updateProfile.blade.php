@@ -24,11 +24,15 @@
                     </div>
                     <div class="detail clearfix">
                         <ul class="mb-0">
+                            @if(Auth::user()->role == 2)
+                        
                             <li>
                                 <a href="/dashboard">
                                     <i class="fa fa-map-marker"></i> Dashboard
                                 </a>
                             </li>
+                            
+
                             <li>
                                 <a
                                    
@@ -45,6 +49,7 @@
                                     >My Properties
                                 </a>
                             </li>
+                            @endif
                             <li>
                                 <a href="Favourites">
                                     <i
@@ -60,6 +65,14 @@
                                     <i class="fa fa-user"></i>Profile
                                 </a>
                             </li>
+
+                            @if (Auth::user()->role == 0)
+                            <li>
+                                <a href="/Adminprop">
+                                    <i class="fa fa-lock"></i>aprove properties
+                                </a>
+                            </li>
+                            @endif
 
                             <li>
                                 <a href="change-password.html">

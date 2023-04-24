@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\like;
 use App\Models\property;
 use GuzzleHttp\Psr7\Query;
+use Symfony\Component\VarDumper\VarDumper;
 
 class favpropertiesController extends Controller
 {
@@ -43,7 +44,6 @@ class favpropertiesController extends Controller
             'user_id' => auth()->id(),
             'property_id' => $request->property_id
         ])->first();
-
 
         if($isExists){
             $isExists->delete();

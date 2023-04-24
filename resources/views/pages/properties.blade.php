@@ -93,7 +93,7 @@
 
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a href="/home">
+        <a href="/">
       <img
         class="logo"
         src='assets//img/icons/logoBlue.png'
@@ -234,11 +234,11 @@
             <div class="searchConatiner">
             <i class="fa-solid fa-magnifying-glass searchIcon"></i>
             
-                <input type="text" class="searchInput" placeholder="Kywords...">
+                <input type="text" class="searchInput" name="keyword" placeholder="Kywords...">
             
             </div>
             
-        <div class="container">
+        <div class="container" id="WHERE_Container">
             <div class="select-btn">
                 <span class="btn-text">WHERE</span>
                 <span class="arrow-dwn">
@@ -249,89 +249,47 @@
             
 
             <ul class="list-items" id="WHERE">
-                <li class="item">
+            
+              @foreach ($cities as $city)
+                <li class="item {{ in_array($city, $old_cities) ? ' checked' : '' }}">
+            
                     <span class="checkbox">
                         <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="city[]" id="" value="Safi" >
+                        <input hidden id="checkFilter" {{ in_array($city, $old_cities) ? ' checked' : '' }} type="checkbox" name="city[]" id="" value="{{ $city }}" >
                     </span>
-                    <span class="item-text"  name = 'city[]'>Safi</span>
+                    <span class="item-text"  name='city[]'>{{ $city }}</span>
                 </li>
+            @endforeach
+            </ul>
+        </div>
 
-                <li class="item">
-                    
-                   
+      
+        <div class="container" id="ROPERTY-TYPES_Container">
+              <div class="select-btn" >
+                  <span class="btn-text">PROPERTY TYPES</span>
+                  <span class="arrow-dwn">
+                      <i class="fa-solid fa-chevron-down"></i>
+                  </span>
+              </div>
+
+              <ul class="list-items" id="PROPERTY-TYPES">
+                @foreach ($types as $type)
+                    <li class="item {{ in_array($type, $old_types) ? 'checked' : '' }}">
                         <span class="checkbox">
-                           
                             <i class="fa-solid fa-check check-icon"></i>
-                            <input hidden id="checkFilter" type="checkbox" name="city[]" id="" value="Rabat" >
+                            <input hidden id="checkFilter" {{ in_array($type, $old_types) ? 'checked' : '' }} type="checkbox" name="type[]" id="" value="{{ $type }}" >
                         </span>
-                        
-                        <span class="item-text" name='city[]'>Rabat</span>
-                   
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="city[]" id="" value="Marakech" >
-                    </span>
-                    <span class="item-text" name = 'city[]'>Marakech</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="city[]" id="" value="Casablanca" >
-                    </span>
-                    <span class="item-text" name = 'city[]'>Casablanca</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="city[]" id="" value="Agadir" >
-                    </span>
-                    <span class="item-text" name = 'city[]'>Agadir</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="city[]" id="" value="Jdida" >
-                    </span>
-                    <span class="item-text" name = 'city[]'>Jdida</span>
-                </li>
+                        <span class="item-text" name="type[]">{{ $type }}</span>
+                    </li>
+                @endforeach
             </ul>
+            
         </div>
-        <div class="container">
-            <div class="select-btn" >
-                <span class="btn-text">PROPERTY TYPES</span>
-                <span class="arrow-dwn">
-                    <i class="fa-solid fa-chevron-down"></i>
-                </span>
-            </div>
+      
 
-            <ul class="list-items" id="PROPERTY-TYPES">
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text" name = 'type[]'>Apartment</span>
-                    <input hidden id="checkFilter" type="checkbox" name="type[]" id="" value="Apartment" >
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    <input hidden id="checkFilter" type="checkbox" name="type[]" id="" value="House" >
-                    </span>
-                    <span class="item-text"  name = 'type[]'>House</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    <input hidden id="checkFilter" type="checkbox" name="type[]" id="" value="House" >
-                    </span>
-                    <span class="item-text"  name = 'type[]'>Garage</span>
-                </li>
-            </ul>
-        </div>
-        <div class="container" >
+
+
+        <div class="container" id="FEATURES_Conatainer">
             <div class="select-btn border-bottom-0">
                 <span class="btn-text">FEATURES</span>
                 <span class="arrow-dwn">
@@ -340,70 +298,17 @@
             </div>
 
             <ul class="list-items" id="FEATURES">
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    </span>
-                    <span class="item-text" name = 'FEATURES[]' >Air Conditioning</span>
-                    <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Air Conditioning" >
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Swimming Pool" >
-                    </span>
-                    <span class="item-text" name = 'FEATURES[]'>Swimming Pool</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Central Heating" >
-                    </span>
-                    <span class="item-text" name = 'FEATURES[]'>Central Heating</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Laundry Room" >
-                    </span>
-                    <span class="item-text" name = 'FEATURES[]'>Laundry Room</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                    <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Gym" >
-                    </span>
-                    <span class="item-text" name = 'FEATURES[]'>Gym</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Window Covering" >
-                    </span>
-                    <span class="item-text">Window Covering</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Refrigerator" >
-                    </span>
-                    <span class="item-text">Refrigerator</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="TV Cable & WIFI" >
-                    </span>
-                    <span class="item-text">TV Cable & WIFI</span>
-                </li>
-                <li class="item">
-                    <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                        <input hidden id="checkFilter" type="checkbox" name="FEATURES[]" value="Microwave" >
-                    </span>
-                    <span class="item-text">Microwave</span>
-                </li>
-            </ul>
+              @foreach ($features as $feature)
+                  <li class="item {{ in_array($feature, $old_features) ? 'checked' : '' }}">
+                      <span class="checkbox">
+                          <i class="fa-solid fa-check check-icon"></i>
+                          <input hidden id="checkFilter" {{ in_array($feature, $old_features) ? 'checked' : '' }} type="checkbox" name="FEATURES[]" value="{{ $feature }}" >
+                      </span>
+                      <span class="item-text">{{ $feature }}</span>
+                  </li>
+              @endforeach
+          </ul>
+          
 
 
         </div>
@@ -429,7 +334,7 @@
                 <div >
                 <div>
                 <div class="dropdownContainer">
-                <span>Latest</span>
+                <span>{{$sort}}</span>
                 <img src="assets/img/icons/iconTriangle.png" alt="">
                 
                 </div>
@@ -470,14 +375,12 @@
 
                 <div class="col-md-6" id="propertiesBox">
                     <div class="card">
-                    {{-- <img
-                        class="card-img-top"
-                        src="assets/img/uploads/p-1.jpg"
-                        alt="Card image cap"
-                    /> --}}
                   
                     <div id="carouselExample{{$loop->index }}" class="carousel slide"  >
+                     
+                      <span class="created_diff">{{$property->created_diff}}</span>
                         <div class="carousel-inner">
+                         
                         @foreach ($property->PropertyImage as $PropertyImage)
                             <div class="carousel-item active">
                                 <img  src="assets/img/uploads/{{$PropertyImage->image}}" class="d-block w-100 "   alt="..." >
@@ -549,7 +452,7 @@
                         <div class="BoxLocationConationer">
                             <div class="locationconatiner">
                                 <i class="fa-solid fa-location-dot"></i>
-                            {{$property->address}}
+                            {{$property->address}}, {{$property->city}}
                             </div>
                         </div>
                         <div class="BoxButtonConatiner">
@@ -570,7 +473,38 @@
                 
                 @endforeach
 
+              @if($some >8)
 
+                <div class="pagination-container d-flex justify-content-center" >
+                  <nav>
+                      <ul class="pagination">
+                          <li class="page-item">
+                              <!-- Display Previous button with link to previous page -->
+                              @if($properties->currentPage() > 1)
+                                  <a style="background-color: #1266e3" class="btn btn-common" id="Previousprop" href="{{ $properties->previousPageUrl() }}">
+                                      <i class="lni-chevron-left"></i> Previous
+                                  </a>
+                              @endif
+                          </li>
+                          <!-- Display page number links -->
+                          @for($i = 1; $i <= $properties->lastPage(); $i++)
+                              <li class="page-item">
+                                  <a class="page-link" id="propPaginate" @if($properties->currentPage() == $i) style="background: #1266e3; color:white" @endif href="{{ $properties->url($i) }}">{{ $i }}</a>
+                              </li>
+                          @endfor
+                          <li class="page-item">
+                              <!-- Display Next button with link to next page -->
+                              @if($properties->currentPage() < $properties->lastPage())
+                                  <a style="background-color: #1266e3" class="btn btn-common" id="Nextprop" href="{{ $properties->nextPageUrl() }}">
+                                      Next <i class="lni-chevron-right"></i>
+                                  </a>
+                              @endif
+                          </li>
+                      </ul>
+                  </nav>
+              </div>
+
+              @endif
 
             </div>
         </div>

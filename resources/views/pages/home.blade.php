@@ -13,7 +13,7 @@
     <div class="imageContainerAll">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a href="/home">
+            <a href="/">
           <img
             class="logo"
             src='assets//img/icons/logo.png'
@@ -38,7 +38,8 @@
           >
             <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
         
-              <a href="/addproperty">
+            @if (!Auth::check() || Auth::user()->role != 1)
+            <a href="/addproperty">
               <button
                 id="addAnnounceBtn"
                 class="btn loginbtn"
@@ -48,7 +49,9 @@
                 <img id="plusIconWhite" src= 'assets//img//icons/iconPlus.png' alt="" />
                 DÉPOSER UNE ANNONCE
               </button>
-            </a>
+          </a>
+            @endif
+
            
               @auth
           
@@ -177,68 +180,115 @@
           </p>
         </div>
 
-        <div class="container boxesContaoner">
-          <div class="row exploreRow">
+       
+          <div class="container boxesContaoner">
+          <div class="row exploreRow" style="column-gap: 30px;">
+            @foreach ($properties as $property)
           <div class="col col-md-4">
-              <div class="card">
-                <img
-                  class="card-img-top"
-                  src= 'assets/img/uploads/p-1.jpg'
-                  alt="Card image cap"
-                />
-                <div class="card-body">
-                  <div class="row boxFirstRow">
-                    <div class="col-8 tiltleBoxPrice">
-                      <span class="propertyType">Sale</span>
-                      <h4 class="boxTitle">Resort Valley Ocs</h4>
-                    </div>
-                    <div class="col-4">
-                      <h6 class="boxPrice">$7,000</h6>
-                    </div>
+            <div class="card">
+                  
+              <div id="carouselExample{{$loop->index }}" class="carousel slide"  >
+                  <div class="carousel-inner">
+                  @foreach ($property->PropertyImage as $PropertyImage)
+                      <div class="carousel-item active">
+                          <img  src="assets/img/uploads/{{$PropertyImage->image}}" class="d-block w-100 "   alt="..." >
+                      </div>
+                  @endforeach
+
+  
                   </div>
+                  {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample{{$loop->index }}" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true" style="width: 23px; height: 23px;"></span>
+                  <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample{{$loop->index }}" data-bs-slide="next">
+                  <span  class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true" style="width: 23px; height: 23px;"></span>
+                  <span class="visually-hidden">Next</span>
+                  </button> --}}
+              </div>
+  
+  
+              <div class="card-body">
+                  <div class="row boxFirstRow">
+                  <div class="col-8 tiltleBoxPrice">
+                      <span class="propertyType">{{$property->type}}</span>
+                      
+                  </div>
+                  <div class="col-4">
+                      <h6 class="boxPrice">${{$property->price}}</h6>
+                  </div>
+
+
+                 
+                  </div>
+
+                  <div class="row boxFirstRow" style="padding-left: 5PX;">
+                      <div class="col-8 tiltleBoxPrice">
+                          <a class="boxTitleA" href="/property/{{$property->id}}"> <h4 class="boxTitle">{{$property->title}}</h4></a>
+                         
+                          
+                      </div>
+
+                      <div class="col-4">
+                          
+                      </div>
+
+
+                     
+                      </div>
                   <div class="boxIconsContainer">
-                    <div class="IconContainer">
+                  <div class="IconContainer">
                       <div class="theiconContainer">
-                        <img src='assets/img/icons/bathtub.svg' alt="" />
+                      <img src="assets/img/icons/bathtub.svg" alt="" />
                       </div>
                       2 Baths
-                    </div>
-                    <div class="IconContainer">
+                  </div>
+                  <div class="IconContainer">
                       <div class="theiconContainer">
-                        <img  src='assets/img/icons/bed.svg' alt="" />
+                      <img  src="assets/img/icons/bed.svg" alt="" />
                       </div>
-                      3 Baths
-                    </div>
-                    <div class="IconContainer">
+                      {{$property->beds}} Baths
+                  </div>
+                  <div class="IconContainer">
                       <div class="theiconContainer">
-                        <img  src='assets/img/icons/move.svg' alt="" />
+                      <img  src="assets/img/icons/move.svg" alt="" />
                       </div>
-                      1100 sqft
-                    </div>
+                      {{$property->area}} sqft
+                  </div>
                   </div>
                   <div class="boxfooter">
-                    <div class="BoxLocationConationer">
+                  <div class="BoxLocationConationer">
                       <div class="locationconatiner">
-                        <img  src='assets/img/icons/move.svg' alt="" />
-                        778 Panama City, FL
+                          <i class="fa-solid fa-location-dot"></i>
+                      {{$property->address}}, {{$property->city}}
                       </div>
-                    </div>
-                    <div class="BoxButtonConatiner">
-                      <a
-                        href="https://resido-v2.smartdemowp.com/listings/resort-valley-ocs/"
-                        class="prt-view"
-                      >
-                        View
-                      </a>
-                    </div>
                   </div>
-                </div>
+                  <div class="BoxButtonConatiner">
+                      <a
+                      href="/property/{{$property->id}}"
+                      class="prt-view"
+
+                      >
+                      View
+                      </a>
+                  </div>
+                  </div>
+              </div>
               </div>
             </div>
+            @endforeach
+
+
+            
           </div>
+         
+         
         </div>
+      
+
+
         <div class="browseContainer">
-          <a class="browseMore" href="/Properties">
+          <a class="browseMore" href="/properties">
             Browse More Properties
           </a>
         </div>
@@ -281,7 +331,7 @@
                         <h4 class="locationName">
                           Rabat, Morocco
                         </h4>
-                        1 property
+                        {{$Rabat}} property
                       </div>
                     </div>
                     <label class="BoxButtonConatiner">
@@ -314,7 +364,7 @@
                         <h4 class="locationName">
                           Casablanca, Morocco
                         </h4>
-                        1 property
+                        {{$Casablanca}} property
                       </div>
                     </div>
                     <div class="BoxButtonConatiner">
@@ -347,7 +397,7 @@
                         <h4 class="locationName">
                           Safi, Morocco
                         </h4>
-                        1 property
+                        {{$Safi}} property
                       </div>
                     </div>
                     <div class="BoxButtonConatiner">
@@ -380,7 +430,7 @@
                         <h4 class="locationName">
                           tangier, Morocco
                         </h4>
-                        1 property
+                        {{$tangier}} property
                       </div>
                     </div>
                     <div class="BoxButtonConatiner">
@@ -413,7 +463,7 @@
                         <h4 class="locationName">
                           Chefchaouen, Morocco
                         </h4>
-                        1 property
+                        {{$Chefchaouen}} property
                       </div>
                     </div>
                     <div class="BoxButtonConatiner">
@@ -446,7 +496,7 @@
                         <h4 class="locationName">
                           Yousoufia, Morocco
                         </h4>
-                        1 property
+                        {{$Yousoufia}} property
                       </div>
                     </div>
                     <div class="BoxButtonConatiner">

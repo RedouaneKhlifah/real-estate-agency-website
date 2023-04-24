@@ -17,6 +17,7 @@ class UserController extends Controller
         return view('pages.signup');
     }
 
+    
     public function login(){
         return view('pages.login');
     }
@@ -36,20 +37,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-      
         
         $fields = $request->validate([
             'first_Name' => 'required|string',
             'last_Name' => 'required|string',
             'phone_Number' => 'required|integer|unique:users,phone_Number',
             'profile_Image' => 'image',
+            'location' => 'required|string',
+            'role' => 'integer',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|confirmed',
         ]);
 
+        if($request->hasFile('profile_Image')){
         $image = $fields['profile_Image'];
         $title = date('Ymdhis') .'.'. $image->getClientOriginalExtension();
         $fields['profile_Image'] = $title;
+        $image->move(public_path('assets/img/users') ,$title);
+        }else {
+            $fields['profile_Image'] = 'default_profile.jpg';
+        }
+
+        // dd($fields);
         
         // create user
         $user = User::create([
@@ -57,11 +66,13 @@ class UserController extends Controller
             'last_Name' => $fields['last_Name'],
             'profile_Image' => $fields['profile_Image'],
             'phone_Number' => $fields['phone_Number'],
+            'location' => $fields['location'],
+            'role' => $fields['role'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
         ]);
 
-        $image->move(public_path('assets/img/users') ,$title);
+        
       
 
         // login 
@@ -98,7 +109,7 @@ class UserController extends Controller
             $request->session()->regenerate();
             return redirect('/home');
         }
-        return back()->withErrors(['email' => '']);
+        return back()->withErrors(['error' => 'error'])->withInput($request->only('email'));
       
         
     }

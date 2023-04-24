@@ -7,10 +7,10 @@
 
 <nav class="navbar navbar-expand-lg">
   <div class="container">
-      <a href="/home">
+      <a href="/">
     <img
       class="logo"
-      src='assets//img/icons/logoBlue.png'
+      src='{{url('assets/img/icons/logoBlue.png')}}'
       alt=""
       style="width: 145px"
     />
@@ -37,8 +37,8 @@
           class="btn loginbtn"
           type="submit"
         >
-          <img id="plusIcon" src='assets/img/icons/plus_icon.png' alt="" />
-          <img id="plusIconWhite" src= 'assets//img//icons/iconPlus.png' alt="" />
+          <img id="plusIcon" src='{{url('assets/img/icons/plus_icon.png')}}' alt="" />
+          <img id="plusIconWhite" src= '{{url('assets/img/icons/iconPlus.png')}}' alt="" />
           DÉPOSER UNE ANNONCE
         </button>
       </a>
@@ -48,7 +48,7 @@
 
            
             <div style="MARGIN: 0PX 14px;"  >
-              <img src="assets/img/users/{{auth()->user()->profile_Image}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
+              <img src="{{url('assets/img/users/'.auth()->user()->profile_Image)}}" class="rounded-circle profile_image m-0" alt="Profile Image" style="    height: 42px;
               width: 42px;">
               <div class="dropdown_Navbar d-inline-block" style="cursor: pointer ; MARGIN-LEFT: 5px;">
                   <span class="userName" style="font-weight: 500;">{{auth()->user()->first_Name}} {{auth()->user()->last_Name}} </span>
@@ -148,13 +148,13 @@
                 <!-- property listing info -->
                 <div class="propertyInfoListingContainer">
                   <div class="propertyInfoListing">
-                    <span class="propertyType">Sale</span>
-                    <h4 class="listing-name">Bluewhale Real Estate</h4>
+                    <span class="propertyType">{{$property->type}}</span>
+                    <h4 class="listing-name">{{$property->title}}</h4>
                     <div class="locationconatiner">
                       <i class="fa-solid fa-location-dot" style="color:#5a6175"></i>
-                      778 Panama City, FL
+                      {{$property->address}} ,{{$property->city}}
                     </div>
-                    <h6 class="boxPrice" id="propertyPrice">$7,000</h6>
+                    <h6 class="boxPrice" id="propertyPrice">${{$property->price}}</h6>
                     <div class="boxIconsContainer" id="propertyIcons">
                       <div class="IconContainer">
                         <div class="theiconContainer">
@@ -179,7 +179,7 @@
                 </div>
   
                 <!--  Detail & Features -->
-                <div class="propertyInfoListingContainer">
+                {{-- <div class="propertyInfoListingContainer">
                   <div class="select-btn propertyInfoShower">
                     <span class="btn-text">Detail & Features</span>
                     <span class="arrow-dwn" id="propertyinfo_arrow">
@@ -216,7 +216,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> --}}
   
                 <!-- description   -->
                 <div class="propertyInfoListingContainer">
@@ -229,20 +229,7 @@
   
                   <div class="propertyInfoListing" id="propertyInfoListing_dec">
                     <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type Lorem Ipsum is simply dummy
-                      text of the printing and typesetting industry. Lorem Ipsum
-                      has been the industry's standard dummy text ever since the
-                      1500s, when an unknown printer took a galley of type and
-                      scrambled it to make a type specimen book. It has survived
-                      not only five centuries, but also the leap into electronic
-                      typesetting, remaining essentially unchanged. It was
-                      popularised in the 1960s with the release of Letraset sheets
-                      containing Lorem Ipsum passages, and more recently with
-                      desktop publishing software like Aldus PageMaker including
-                      versions of Lorem Ipsum.
+                      {{$property->description}} 
                     </p>
                   </div>
                 </div>
@@ -297,7 +284,6 @@
                       
 
                       <span class="saveText ">Save</span>
-                     
 
                     </form>
                   </div>
@@ -312,11 +298,11 @@
                             alt=""
                           />
                         </div>
-                        <h2 class="ownerName">Mohamed Osalh</h2>
+                        <h2 class="ownerName">{{$property->user->first_Name}} {{$property->user->last_Name}}</h2>
                       </div>
                     </div>
                     <div class="sendMessageInputs">
-                      <div class="singleMessageInput">
+                      {{-- <div class="singleMessageInput">
                         <label id="labelAut" for="user_login">Name</label>
                         <input
                           <input
@@ -356,8 +342,8 @@
                           class="searchInput"
                           placeholder="I'm interested in this property" cols="30" rows="40"></textarea>
                         
-                      </div>
-                      <button class="sendMessageBtn">Send Message</button>
+                      </div> --}}
+                      <a href="/chatify/{{$property->user->id}}"><button class="sendMessageBtn" style="border-radius: 10px;">Send Message</button></a>
                     </div>
                   
   

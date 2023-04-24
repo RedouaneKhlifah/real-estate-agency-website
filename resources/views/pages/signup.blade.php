@@ -26,7 +26,7 @@
                         <div class="col-md-12 form-group" id="profile_image_col">
                             <label for="profile_Image">
                             <div class="profile_image_container">
-                            <img class="profile_Image_show" src="{{asset('assets/img/uploads/default_profile.jpg')}}" alt="">
+                            <img class="profile_Image_show" src="{{asset('assets/img/users/default_profile.jpg')}}" alt="">
                             <span class="change_image_text">change image</span>
                             <div class="overlay"></div>
                             <i class="fa-solid fa-camera" style="color: #ffffff;"></i>
@@ -104,6 +104,47 @@
                              {{-- end error --}}
 
                         </div>
+
+                        <div class="col-md-6 form-group">
+
+
+                            <label for="last_name">Location</label>
+                            <input
+                                type="text"
+                                name="location"
+                                id="location"
+                                class="form-input"
+                                size="20"
+                                placeholder="Location"
+                                value={{old('Location')}}
+
+                            >
+                            {{-- error --}}
+                            @error('location')
+                            <p
+                            id="last_Name-error"
+                            class="text-danger"
+                        >{{$message}}</p>
+                            @enderror
+
+                             {{-- end error --}}
+
+                        </div>
+
+
+                        <div class="col-md-6 form-group" style="    display: flex;
+                        flex-direction: column;
+                    ">
+
+
+                            <label for="last_name">role</label>
+                            <select name="role" id="" style="    height: 56px;width: 90%;border: none;background: #f6f8fd;">
+                                <option value="1">Tenants</option>
+                                <option value="2">Landlord</option>
+                            </select>
+                        </div>
+
+
                         <div class="col-md-6 form-group">
 
 
